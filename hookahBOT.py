@@ -28,7 +28,7 @@ def handle_option(message):
         with open(photo_path, 'rb') as photo:
             bot.send_photo(message.chat.id, photo)
     elif message.text == 'Опция 2':
-        bot.send_message(message.chat.id, "Вы выбрали Опцию пошеssssл нахуй!")
+        bot.send_message(message.chat.id, "Вы выбрали Опцию asss нахуй!")
         photo_path = r"C:\Users\vika0\zxc\photo\photo_2024-06-12_19-56-34.jpg"
         with open(photo_path, 'rb') as photo:
             bot.send_photo(message.chat.id, photo)
