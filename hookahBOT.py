@@ -3,7 +3,7 @@ from telebot.types import ReplyKeyboardMarkup, KeyboardButton
 import time
 import requests
 
-API_TOKEN = 'YOUR_API_TOKEN_HERE'
+API_TOKEN = '7367410479:AAG2lm0_YWlbtry9enSf2Z7Bpd7maqSdXtg'
 
 bot = telebot.TeleBot(API_TOKEN)
 
