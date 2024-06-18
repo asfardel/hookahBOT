@@ -32,8 +32,8 @@ def send_welcome(message):
     # Создаем клавиатуру с кнопками
     markup = ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True)
     button1 = KeyboardButton('перечная мята')
-    button2 = KeyboardButton('Опция 2')
-    button3 = KeyboardButton('Опция 3')
+    button2 = KeyboardButton('кислая вишня')
+    button3 = KeyboardButton('гранат')
     markup.add(button1, button2, button3)
     
     # Отправляем новое сообщение и сохраняем его ID
@@ -49,7 +49,7 @@ def handle_option(message):
     # Словарь с фото для каждой опции
     options = {
         'перечная мята': {
-            'photo_url': 'https://github.com/asfardel/hookahBOT/blob/first_branch/photo/myata.jpg',
+            'photo_url': 'https://github.com/asfardel/hookahBOT/blob/first_branch/photo/granat.jpg',
             'caption': "перечная мяты"
         },
         'кислая вишня': {
