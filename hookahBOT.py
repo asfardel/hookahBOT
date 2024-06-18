@@ -41,7 +41,7 @@ def send_welcome(message):
     last_message_id[message.chat.id] = sent_message.message_id
 
 # Обработчик нажатий кнопок
-@bot.message_handler(func=lambda message: message.text in ['перечная мята', 'Опция 2', 'Опция 3'])
+@bot.message_handler(func=lambda message: message.text in ['перечная мята', 'кислая вишня', 'гранат'])
 def handle_option(message):
     # Удаляем предыдущее сообщение бота
     delete_last_message(message.chat.id)
@@ -49,16 +49,13 @@ def handle_option(message):
     # Словарь с фото для каждой опции
     options = {
         'перечная мята': {
-            'photo_url': 'https://github.com/asfardel/hookahBOT/blob/first_branch/photo/photo_2024-06-12_19-56-34.jpg',
-            'caption': "Фото для Опции 1!"
+            'photo_url': 'https://github.com/asfardel/hookahBOT/blob/first_branch/photo/myata.jpg',
         },
-        'Опция 2': {
-            'photo_url': 'https://github.com/asfardel/hookahBOT/blob/first_branch/photo/photo_2024-06-12_19-56-34.jpg',
-            'caption': "Фото для Опции 2!"
+        'кислая вишня': {
+            'photo_url': 'https://github.com/asfardel/hookahBOT/blob/first_branch/photo/vishnya.jpg',
         },
-        'Опция 3': {
-            'photo_url': 'https://github.com/asfardel/hookahBOT/blob/first_branch/photo/photo_2024-06-12_19-56-34.jpg',
-            'caption': "Фото для Опции 3!"
+        'гранат': {
+            'photo_url': 'https://github.com/asfardel/hookahBOT/blob/first_branch/photo/granat.jpg',
         }
     }
     
