@@ -1,5 +1,5 @@
 import telebot
-from telebot.types import ReplyKeyboardMarkup, KeyboardButton
+from telebot.types import ReplyKeyboardMarkup, KeyboardButton, InputMediaPhoto
 import time
 import requests
 
@@ -18,9 +18,9 @@ def delete_last_message(chat_id):
         except Exception as e:
             print(f"Не удалось удалить сообщение: {e}")
 
-# Функция для отправки сообщения и текста
-def send_option_message(chat_id, message_text):
-    sent_message = bot.send_message(chat_id, message_text)
+# Функция для отправки фото и текста
+def send_option_photo(chat_id, photo_url, caption):
+    sent_message = bot.send_photo(chat_id, photo_url, caption)
     return sent_message
 
 # Обработчик команды /start
@@ -46,14 +46,27 @@ def handle_option(message):
     # Удаляем предыдущее сообщение бота
     delete_last_message(message.chat.id)
     
+    # Словарь с фото для каждой опции
     options = {
-        'перечная мята': "Вы выбрали Опцию 1!",
-        'Опция 2': "Вы выбрали Опцию 2!",
-        'Опция 3': "Вы выбрали Опцию 3!"
+        'перечная мята': {
+            'photo_url': 'https://github.com/asfardel/hookahBOT/blob/first_branch/photo/photo_2024-06-12_19-56-34.jpg',
+            'caption': "Фото для Опции 1!"
+        },
+        'Опция 2': {
+            'photo_url': 'https://github.com/asfardel/hookahBOT/blob/first_branch/photo/photo_2024-06-12_19-56-34.jpg',
+            'caption': "Фото для Опции 2!"
+        },
+        'Опция 3': {
+            'photo_url': 'https://github.com/asfardel/hookahBOT/blob/first_branch/photo/photo_2024-06-12_19-56-34.jpg',
+            'caption': "Фото для Опции 3!"
+        }
     }
     
-    option_message = options[message.text]
-    sent_message = send_option_message(message.chat.id, option_message)
+    option = options[message.text]
+    photo_url = option['photo_url']
+    caption = option['caption']
+    
+    sent_message = send_option_photo(message.chat.id, photo_url, caption)
     
     # Сохраняем ID последнего сообщения
     last_message_id[message.chat.id] = sent_message.message_id
