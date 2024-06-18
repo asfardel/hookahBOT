@@ -49,15 +49,15 @@ def handle_option(message):
     # Словарь с фото для каждой опции
     options = {
         'перечная мята': {
-            'photo_url': 'photo/myata.jpg',
+            'photo_url': 'https://github.com/asfardel/hookahBOT/blob/first_branch/photo/myata.jpg?raw=true',
             'caption': "перечная мяты"
         },
         'кислая вишня': {
-            'photo_url': 'photo/vishnya.jpg',
+            'photo_url': 'https://github.com/asfardel/hookahBOT/blob/first_branch/photo/vishnya.jpg?raw=true',
             'caption': "вишня"
         },
         'гранат': {
-            'photo_url': 'C:\Users\vika0\OneDrive\Documents\GitHub\hookahBOT\photo\granat.jpg',
+            'photo_url': 'https://github.com/asfardel/hookahBOT/blob/first_branch/photo/granat.jpg?raw=true',
             'caption': "гранат"
         }
     }
