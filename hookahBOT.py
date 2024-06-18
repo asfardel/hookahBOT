@@ -57,7 +57,7 @@ def handle_option(message):
             'caption': "вишня"
         },
         'гранат': {
-            'photo_url': 'photo/granat.jpg',
+            'photo_url': 'C:\Users\vika0\OneDrive\Documents\GitHub\hookahBOT\photo\granat.jpg',
             'caption': "гранат"
         }
     }
