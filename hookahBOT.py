@@ -18,10 +18,9 @@ def delete_last_message(chat_id):
         except Exception as e:
             print(f"Не удалось удалить сообщение: {e}")
 
-# Функция для отправки сообщения и фотографии
-def send_message_and_photo(chat_id, message_text, photo_url):
+# Функция для отправки сообщения и текста
+def send_option_message(chat_id, message_text):
     sent_message = bot.send_message(chat_id, message_text)
-    bot.send_photo(chat_id, photo_url)
     return sent_message
 
 # Обработчик команды /start
@@ -43,28 +42,18 @@ def send_welcome(message):
 
 # Обработчик нажатий кнопок
 @bot.message_handler(func=lambda message: message.text in ['перечная мята', 'Опция 2', 'Опция 3'])
-
 def handle_option(message):
     # Удаляем предыдущее сообщение бота
     delete_last_message(message.chat.id)
     
     options = {
-        'перечная мята': {
-            'message': "Вы выбрали Опцию 1!",
-            'photo': "/home/asfardel/hookahFP/hookahBOT/photo/photo_1.jpg"
-        },
-        'персик': {
-            'message': "Вы выбрали Опцию 2!",
-            'photo': "/home/asfardel/hookahFP/hookahBOT/photo/photo_2.jpg"
-        },
-        'арбуз': {
-            'message': "Вы выбрали Опцию 3!",
-            'photo': "/home/asfardel/hookahFP/hookahBOT/photo/photo_3.jpg"
-        }
+        'перечная мята': "Вы выбрали Опцию 1!",
+        'Опция 2': "Вы выбрали Опцию 2!",
+        'Опция 3': "Вы выбрали Опцию 3!"
     }
     
-    option = options[message.text]
-    sent_message = send_message_and_photo(message.chat.id, option['message'], option['photo'])
+    option_message = options[message.text]
+    sent_message = send_option_message(message.chat.id, option_message)
     
     # Сохраняем ID последнего сообщения
     last_message_id[message.chat.id] = sent_message.message_id
