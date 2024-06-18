@@ -18,6 +18,12 @@ def delete_last_message(chat_id):
         except Exception as e:
             print(f"Не удалось удалить сообщение: {e}")
 
+# Функция для отправки сообщения и фотографии
+def send_message_and_photo(chat_id, message_text, photo_url):
+    sent_message = bot.send_message(chat_id, message_text)
+    bot.send_photo(chat_id, photo_url)
+    return sent_message
+
 # Обработчик команды /start
 @bot.message_handler(commands=['start'])
 def send_welcome(message):
@@ -37,22 +43,28 @@ def send_welcome(message):
 
 # Обработчик нажатий кнопок
 @bot.message_handler(func=lambda message: message.text in ['перечная мята', 'Опция 2', 'Опция 3'])
+
 def handle_option(message):
     # Удаляем предыдущее сообщение бота
     delete_last_message(message.chat.id)
     
-    if message.text == 'перечная мята':
-        sent_message = bot.send_message(message.chat.id, "Вы выбрали Опцию 1!")
-        photo_url = "/home/asfardel/hookahFP/hookahBOT/photo/photo_2024-06-12_19-56-34.jpg"
-        bot.send_photo(message.chat.id, photo_url)
-    elif message.text == 'персик':
-        sent_message = bot.send_message(message.chat.id, "Вы выбрали Опцию 2!")
-        photo_url = "/home/asfardel/hookahFP/hookahBOT/photo/photo_2024-06-12_19-56-34.jpg"
-        bot.send_photo(message.chat.id, photo_url)
-    elif message.text == 'арбуз':
-        sent_message = bot.send_message(message.chat.id, "Вы выбрали Опцию 3!")
-        photo_url = "/home/asfardel/hookahFP/hookahBOT/photo/photo_2024-06-12_19-56-34.jpg"
-        bot.send_photo(message.chat.id, photo_url)
+    options = {
+        'перечная мята': {
+            'message': "Вы выбрали Опцию 1!",
+            'photo': "/home/asfardel/hookahFP/hookahBOT/photo/photo_1.jpg"
+        },
+        'персик': {
+            'message': "Вы выбрали Опцию 2!",
+            'photo': "/home/asfardel/hookahFP/hookahBOT/photo/photo_2.jpg"
+        },
+        'арбуз': {
+            'message': "Вы выбрали Опцию 3!",
+            'photo': "/home/asfardel/hookahFP/hookahBOT/photo/photo_3.jpg"
+        }
+    }
+    
+    option = options[message.text]
+    sent_message = send_message_and_photo(message.chat.id, option['message'], option['photo'])
     
     # Сохраняем ID последнего сообщения
     last_message_id[message.chat.id] = sent_message.message_id
