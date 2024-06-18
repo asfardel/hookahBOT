@@ -41,21 +41,18 @@ def handle_option(message):
     # Удаляем предыдущее сообщение бота
     delete_last_message(message.chat.id)
     
-if message.text == 'перечная мята':
-    sent_message = bot.send_message(message.chat.id, "Вы выбрали Опцию 1!")
-    photo_path = r"https://github.com/asfardel/hookahBOT/blob/first_branch/photo/photo_2024-06-12_19-56-34.jpg"
-    with open(photo_path, 'rb') as photo:
-        bot.send_photo(message.chat.id, photo)
-elif message.text == 'Опция 2':
-    sent_message = bot.send_message(message.chat.id, "Вы выбрали Опцию 2!")
-    photo_path = r"https://github.com/asfardel/hookahBOT/blob/first_branch/photo/photo_2024-06-12_19-56-34.jpg"
-    with open(photo_path, 'rb') as photo:
-        bot.send_photo(message.chat.id, photo)
-elif message.text == 'Опция 3':
-    sent_message = bot.send_message(message.chat.id, "Вы выбрали Опцию 3!")
-    photo_path = r"https://github.com/asfardel/hookahBOT/blob/first_branch/photo/photo_2024-06-12_19-56-34.jpg"
-    with open(photo_path, 'rb') as photo:
-        bot.send_photo(message.chat.id, photo)
+    if message.text == 'перечная мята':
+        sent_message = bot.send_message(message.chat.id, "Вы выбрали Опцию 1!")
+        photo_url = "/home/asfardel/hookahFP/hookahBOT/photo/photo_2024-06-12_19-56-34.jpg"
+        bot.send_photo(message.chat.id, photo_url)
+    elif message.text == 'персик':
+        sent_message = bot.send_message(message.chat.id, "Вы выбрали Опцию 2!")
+        photo_url = "/home/asfardel/hookahFP/hookahBOT/photo/photo_2024-06-12_19-56-34.jpg"
+        bot.send_photo(message.chat.id, photo_url)
+    elif message.text == 'арбуз':
+        sent_message = bot.send_message(message.chat.id, "Вы выбрали Опцию 3!")
+        photo_url = "/home/asfardel/hookahFP/hookahBOT/photo/photo_2024-06-12_19-56-34.jpg"
+        bot.send_photo(message.chat.id, photo_url)
     
     # Сохраняем ID последнего сообщения
     last_message_id[message.chat.id] = sent_message.message_id
