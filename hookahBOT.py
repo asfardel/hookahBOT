@@ -34,6 +34,9 @@ def send_welcome(message):
     button1 = KeyboardButton('перечная мята')
     button2 = KeyboardButton('кислая вишня')
     button3 = KeyboardButton('гранат')
+    button4 = KeyboardButton('персик')
+    button5 = KeyboardButton('маракуйя')
+    button5 = KeyboardButton('манго')
     markup.add(button1, button2, button3)
     
     # Отправляем новое сообщение и сохраняем его ID
