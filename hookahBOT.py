@@ -44,7 +44,7 @@ def send_welcome(message):
     last_message_id[message.chat.id] = sent_message.message_id
 
 # Обработчик нажатий кнопок
-@bot.message_handler(func=lambda message: message.text in ['перечная мята', 'кислая вишня', 'гранат'])
+@bot.message_handler(func=lambda message: message.text in ['перечная мята', 'кислая вишня', 'гранат', 'персик', 'маракуйя', 'манго'])
 def handle_option(message):
     # Удаляем предыдущее сообщение бота
     delete_last_message(message.chat.id)
@@ -62,6 +62,18 @@ def handle_option(message):
         'гранат': {
             'photo_url': 'https://github.com/asfardel/hookahBOT/blob/first_branch/photo/granat.jpg?raw=true',
             'caption': "гранат"
+        },
+        'персик' : {
+            'photo_url': 'https://github.com/asfardel/hookahBOT/blob/first_branch/photo/granat.jpg?raw=true',
+            'caption': "персик"
+        },
+         'маракуйя' : {
+            'photo_url': 'https://github.com/asfardel/hookahBOT/blob/first_branch/photo/granat.jpg?raw=true',
+            'caption': "маракуйя"
+        },
+         'манго' : {
+            'photo_url': 'https://github.com/asfardel/hookahBOT/blob/first_branch/photo/granat.jpg?raw=true',
+            'caption': "манго"
         }
     }
     
