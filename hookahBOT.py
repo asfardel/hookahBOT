@@ -1,5 +1,5 @@
 import telebot
-from telebot.types import ReplyKeyboardMarkup, KeyboardButton, InputMediaPhoto
+from telebot.types import ReplyKeyboardMarkup, KeyboardButton
 import time
 import requests
 
@@ -9,6 +9,8 @@ bot = telebot.TeleBot(API_TOKEN)
 
 # Словарь для хранения ID последнего отправленного сообщения для каждого чата
 last_message_id = {}
+# Словарь для хранения ID последнего сообщения пользователя для каждого чата
+last_user_message_id = {}
 
 # Функция для удаления последнего сообщения, отправленного ботом
 def delete_last_message(chat_id):
@@ -16,7 +18,15 @@ def delete_last_message(chat_id):
         try:
             bot.delete_message(chat_id, last_message_id[chat_id])
         except Exception as e:
-            print(f"Не удалось удалить сообщение: {e}")
+            print(f"Не удалось удалить сообщение бота: {e}")
+
+# Функция для удаления последнего сообщения пользователя
+def delete_last_user_message(chat_id):
+    if chat_id in last_user_message_id:
+        try:
+            bot.delete_message(chat_id, last_user_message_id[chat_id])
+        except Exception as e:
+            print(f"Не удалось удалить сообщение пользователя: {e}")
 
 # Функция для отправки фото и текста
 def send_option_photo(chat_id, photo_url, caption):
@@ -26,8 +36,12 @@ def send_option_photo(chat_id, photo_url, caption):
 # Обработчик команды /start
 @bot.message_handler(commands=['start'])
 def send_welcome(message):
-    # Удаляем предыдущее сообщение бота
+    # Удаляем предыдущее сообщение бота и пользователя
     delete_last_message(message.chat.id)
+    delete_last_user_message(message.chat.id)
+    
+    # Сохраняем ID последнего сообщения пользователя
+    last_user_message_id[message.chat.id] = message.message_id
     
     # Создаем клавиатуру с кнопками
     markup = ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True)
@@ -36,8 +50,8 @@ def send_welcome(message):
     button3 = KeyboardButton('гранат')
     button4 = KeyboardButton('персик')
     button5 = KeyboardButton('маракуйя')
-    button5 = KeyboardButton('манго')
-    markup.add(button1, button2, button3)
+    button6 = KeyboardButton('манго')
+    markup.add(button1, button2, button3, button4, button5, button6)
     
     # Отправляем новое сообщение и сохраняем его ID
     sent_message = bot.send_message(message.chat.id, "Добро пожаловать! Пожалуйста, выберите одну из опций:", reply_markup=markup)
@@ -46,33 +60,37 @@ def send_welcome(message):
 # Обработчик нажатий кнопок
 @bot.message_handler(func=lambda message: message.text in ['перечная мята', 'кислая вишня', 'гранат', 'персик', 'маракуйя', 'манго'])
 def handle_option(message):
-    # Удаляем предыдущее сообщение бота
+    # Удаляем предыдущее сообщение бота и пользователя
     delete_last_message(message.chat.id)
+    delete_last_user_message(message.chat.id)
+    
+    # Сохраняем ID последнего сообщения пользователя
+    last_user_message_id[message.chat.id] = message.message_id
     
     # Словарь с фото для каждой опции
     options = {
         'перечная мята': {
             'photo_url': 'https://github.com/asfardel/hookahBOT/blob/first_branch/photo/myata.jpg?raw=true',
-            'caption': "перечная мяты"
+            'caption': "перечная мята"
         },
         'кислая вишня': {
             'photo_url': 'https://github.com/asfardel/hookahBOT/blob/first_branch/photo/vishnya.jpg?raw=true',
-            'caption': "вишня"
+            'caption': "кислая вишня"
         },
         'гранат': {
             'photo_url': 'https://github.com/asfardel/hookahBOT/blob/first_branch/photo/granat.jpg?raw=true',
             'caption': "гранат"
         },
-        'персик' : {
-            'photo_url': 'https://github.com/asfardel/hookahBOT/blob/first_branch/photo/granat.jpg?raw=true',
+        'персик': {
+            'photo_url': 'https://github.com/asfardel/hookahBOT/blob/first_branch/photo/persik.jpg?raw=true',
             'caption': "персик"
         },
-         'маракуйя' : {
-            'photo_url': 'https://github.com/asfardel/hookahBOT/blob/first_branch/photo/granat.jpg?raw=true',
+        'маракуйя': {
+            'photo_url': 'https://github.com/asfardel/hookahBOT/blob/first_branch/photo/marakuya.jpg?raw=true',
             'caption': "маракуйя"
         },
-         'манго' : {
-            'photo_url': 'https://github.com/asfardel/hookahBOT/blob/first_branch/photo/granat.jpg?raw=true',
+        'манго': {
+            'photo_url': 'https://github.com/asfardel/hookahBOT/blob/first_branch/photo/mango.jpg?raw=true',
             'caption': "манго"
         }
     }
