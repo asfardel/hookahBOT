@@ -1,0 +1,26 @@
+{
+    "перечная мята": {
+        "photo_url": "https://github.com/asfardel/hookahBOT/blob/first_branch/photo/myata.jpg?raw=true",
+        "caption": "перечная мята"
+    },
+    "кислая вишня": {
+        "photo_url": "https://github.com/asfardel/hookahBOT/blob/first_branch/photo/vishnya.jpg?raw=true",
+        "caption": "кислая вишня"
+    },
+    "гранат": {
+        "photo_url": "https://github.com/asfardel/hookahBOT/blob/first_branch/photo/granat.jpg?raw=true",
+        "caption": "гранат"
+    },
+    "персик": {
+        "photo_url": "https://github.com/asfardel/hookahBOT/blob/first_branch/photo/persik.jpg?raw=true",
+        "caption": "персик"
+    },
+    "маракуйя": {
+        "photo_url": "https://github.com/asfardel/hookahBOT/blob/first_branch/photo/marakuya.jpg?raw=true",
+        "caption": "маракуйя"
+    },
+    "манго": {
+        "photo_url": "https://github.com/asfardel/hookahBOT/blob/first_branch/photo/mango.jpg?raw=true",
+        "caption": "манго"
+    }
+}

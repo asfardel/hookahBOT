@@ -2,6 +2,7 @@ import telebot
 from telebot.types import ReplyKeyboardMarkup, KeyboardButton
 import time
 import requests
+import json
 
 API_TOKEN = '7367410479:AAG2lm0_YWlbtry9enSf2Z7Bpd7maqSdXtg'
 
@@ -11,6 +12,10 @@ bot = telebot.TeleBot(API_TOKEN)
 last_message_ids = {}
 # Словарь для хранения ID последнего сообщения пользователя для каждого чата
 last_user_message_id = {}
+
+# Загрузка опций из JSON файла
+with open('options.json', 'r', encoding='utf-8') as file:
+    options = json.load(file)
 
 # Функция для удаления последних сообщений, отправленных ботом
 def delete_last_messages(chat_id):
@@ -45,13 +50,8 @@ def send_option_photo_with_button(chat_id, photo_url, caption):
 def send_option_menu(chat_id):
     # Создаем клавиатуру с кнопками
     markup = ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True)
-    button1 = KeyboardButton('перечная мята')
-    button2 = KeyboardButton('кислая вишня')
-    button3 = KeyboardButton('гранат')
-    button4 = KeyboardButton('персик')
-    button5 = KeyboardButton('маракуйя')
-    button6 = KeyboardButton('манго')
-    markup.add(button1, button2, button3, button4, button5, button6)
+    for option in options.keys():
+        markup.add(KeyboardButton(option))
     
     # Отправляем новое сообщение и сохраняем его ID
     sent_message = bot.send_message(chat_id, "Добро пожаловать! Пожалуйста, выберите одну из опций:", reply_markup=markup)
@@ -73,7 +73,7 @@ def send_welcome(message):
     send_option_menu(message.chat.id)
 
 # Обработчик нажатий кнопок
-@bot.message_handler(func=lambda message: message.text in ['перечная мята', 'кислая вишня', 'гранат', 'персик', 'маракуйя', 'манго'])
+@bot.message_handler(func=lambda message: message.text in options.keys())
 def handle_option(message):
     # Удаляем предыдущие сообщения бота и пользователя
     delete_last_messages(message.chat.id)
@@ -81,34 +81,6 @@ def handle_option(message):
     
     # Сохраняем ID последнего сообщения пользователя
     last_user_message_id[message.chat.id] = message.message_id
-    
-    # Словарь с фото для каждой опции
-    options = {
-        'перечная мята': {
-            'photo_url': 'https://github.com/asfardel/hookahBOT/blob/first_branch/photo/myata.jpg?raw=true',
-            'caption': "перечная мята"
-        },
-        'кислая вишня': {
-            'photo_url': 'https://github.com/asfardel/hookahBOT/blob/first_branch/photo/vishnya.jpg?raw=true',
-            'caption': "кислая вишня"
-        },
-        'гранат': {
-            'photo_url': 'https://github.com/asfardel/hookahBOT/blob/first_branch/photo/granat.jpg?raw=true',
-            'caption': "гранат"
-        },
-        'персик': {
-            'photo_url': 'https://github.com/asfardel/hookahBOT/blob/first_branch/photo/persik.jpg?raw=true',
-            'caption': "персик"
-        },
-        'маракуйя': {
-            'photo_url': 'https://github.com/asfardel/hookahBOT/blob/first_branch/photo/marakuya.jpg?raw=true',
-            'caption': "маракуйя"
-        },
-        'манго': {
-            'photo_url': 'https://github.com/asfardel/hookahBOT/blob/first_branch/photo/mango.jpg?raw=true',
-            'caption': "манго"
-        }
-    }
     
     option = options[message.text]
     photo_url = option['photo_url']
