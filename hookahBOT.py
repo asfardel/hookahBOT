@@ -1,10 +1,10 @@
 import telebot
-from telebot.types import ReplyKeyboardMarkup, KeyboardButton
+from telebot.types import ReplyKeyboardMarkup, KeyboardButton, InlineKeyboardMarkup, InlineKeyboardButton
 import time
 import requests
 import json
 
-API_TOKEN = '7367410479:AAG2lm0_YWlbtry9enSf2Z7Bpd7maqSdXtg'
+API_TOKEN = '7367410479:AAG2lm0_YWlbtry9enSf2Z7Bpd7maqSdXtg'  # Замените на ваш токен
 
 bot = telebot.TeleBot(API_TOKEN)
 
@@ -59,6 +59,22 @@ def send_option_menu(chat_id):
         last_message_ids[chat_id] = []
     last_message_ids[chat_id].append(sent_message.message_id)
 
+# Функция для отправки меню с командами
+def send_command_menu(chat_id):
+    command_list = "/start - Начать заново\n/menu - Показать это меню\n/set_avatar - Установить аватарку\n"
+    sent_message = bot.send_message(chat_id, f"Доступные команды:\n{command_list}")
+    if chat_id not in last_message_ids:
+        last_message_ids[chat_id] = []
+    last_message_ids[chat_id].append(sent_message.message_id)
+
+# Функция для установки аватарки бота
+def set_bot_profile_photo(photo_path):
+    url = f"https://api.telegram.org/bot{API_TOKEN}/setChatPhoto"
+    with open(photo_path, 'rb') as photo:
+        files = {'photo': photo}
+        response = requests.post(url, files=files)
+        return response.json()
+
 # Обработчик команды /start
 @bot.message_handler(commands=['start'])
 def send_welcome(message):
@@ -71,6 +87,29 @@ def send_welcome(message):
     
     # Отправляем меню с вариантами выбора
     send_option_menu(message.chat.id)
+
+# Обработчик команды /menu
+@bot.message_handler(commands=['menu'])
+def send_menu(message):
+    # Удаляем предыдущие сообщения бота и пользователя
+    delete_last_messages(message.chat.id)
+    delete_last_user_message(message.chat.id)
+    
+    # Сохраняем ID последнего сообщения пользователя
+    last_user_message_id[message.chat.id] = message.message_id
+    
+    # Отправляем меню команд
+    send_command_menu(message.chat.id)
+
+# Обработчик команды /set_avatar
+@bot.message_handler(commands=['set_avatar'])
+def handle_set_avatar(message):
+    # Путь к фото
+    photo_path = 'path_to_your_photo.jpg'  # Замените на путь к вашему фото
+    result = set_bot_profile_photo(photo_path)
+    
+    # Отправляем результат выполнения команды
+    bot.send_message(message.chat.id, f"Результат установки аватарки: {result}")
 
 # Обработчик нажатий кнопок
 @bot.message_handler(func=lambda message: message.text in options.keys())
@@ -103,6 +142,27 @@ def handle_back_to_menu(message):
     
     # Отправляем меню с вариантами выбора
     send_option_menu(message.chat.id)
+
+# Обработчик нажатия кнопки "Меню"
+@bot.message_handler(func=lambda message: message.text == 'Меню')
+def handle_menu_button(message):
+    # Отправляем inline-клавиатуру с командами
+    markup = InlineKeyboardMarkup()
+    markup.row_width = 1  # Отображаем кнопки в один столбец
+    
+    command_list = "/start - Начать заново\n/menu - Показать это меню\n"
+    command_buttons = [
+        InlineKeyboardButton("Показать команды", callback_data='show_commands'),
+    ]
+    markup.add(*command_buttons)
+    
+    bot.send_message(message.chat.id, "Выберите команду:", reply_markup=markup)
+
+# Обработчик inline-кнопок
+@bot.callback_query_handler(func=lambda call: True)
+def handle_inline_buttons(call):
+    if call.data == 'show_commands':
+        send_command_menu(call.message.chat.id)
 
 # Запуск бота с увеличенным таймаутом и механизмом повторных попыток
 while True:
