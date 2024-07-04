@@ -1,12 +1,11 @@
+import os
 import telebot
-from telebot.types import ReplyKeyboardMarkup, KeyboardButton, InlineKeyboardMarkup, InlineKeyboardButton
-import time
 import requests
 import json
 
-API_TOKEN = '7367410479:AAG2lm0_YWlbtry9enSf2Z7Bpd7maqSdXtg'  # Замените на ваш токен
+API_TOKEN = os.getenv('7367410479:AAG2lm0_YWlbtry9enSf2Z7Bpd7maqSdXtg')
 
-bot = telebot.TeleBot(API_TOKEN)
+bot = telebot.TeleBot(7367410479:AAG2lm0_YWlbtry9enSf2Z7Bpd7maqSdXtg)
 
 # Словарь для хранения ID последних отправленных сообщений для каждого чата
 last_message_ids = {}
@@ -38,8 +37,8 @@ def delete_last_user_message(chat_id):
 # Функция для отправки фото и текста с кнопкой "Вернуться к выбору"
 def send_option_photo_with_button(chat_id, photo_url, caption):
     # Создаем клавиатуру с кнопкой "Вернуться к выбору"
-    markup = ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True)
-    back_button = KeyboardButton('Вернуться к выбору')
+    markup = telebot.types.ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True)
+    back_button = telebot.types.KeyboardButton('Вернуться к выбору')
     markup.add(back_button)
     
     # Отправляем фото с подписью и клавиатурой
@@ -49,9 +48,9 @@ def send_option_photo_with_button(chat_id, photo_url, caption):
 # Функция для отправки приветственного сообщения с клавиатурой
 def send_option_menu(chat_id):
     # Создаем клавиатуру с кнопками
-    markup = ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True)
+    markup = telebot.types.ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True)
     for option in options.keys():
-        markup.add(KeyboardButton(option))
+        markup.add(telebot.types.KeyboardButton(option))
     
     # Отправляем новое сообщение и сохраняем его ID
     sent_message = bot.send_message(chat_id, "Добро пожаловать! Пожалуйста, выберите одну из опций:", reply_markup=markup)
@@ -118,4 +117,58 @@ def handle_option(message):
     delete_last_messages(message.chat.id)
     delete_last_user_message(message.chat.id)
     
-    # Сохраняем ID последнего сообщения
+    # Сохраняем ID последнего сообщения пользователя
+    last_user_message_id[message.chat.id] = message.message_id
+    
+    option = options[message.text]
+    photo_url = option['photo_url']
+    caption = option['caption']
+    
+    sent_photo_message = send_option_photo_with_button(message.chat.id, photo_url, caption)
+    if message.chat.id not in last_message_ids:
+        last_message_ids[message.chat.id] = []
+    last_message_ids[message.chat.id].append(sent_photo_message.message_id)
+
+# Обработчик кнопки "Вернуться к выбору"
+@bot.message_handler(func=lambda message: message.text == 'Вернуться к выбору')
+def handle_back_to_menu(message):
+    # Удаляем предыдущие сообщения бота и пользователя
+    delete_last_messages(message.chat.id)
+    delete_last_user_message(message.chat.id)
+    
+    # Сохраняем ID последнего сообщения пользователя
+    last_user_message_id[message.chat.id] = message.message_id
+    
+    # Отправляем меню с вариантами выбора
+    send_option_menu(message.chat.id)
+
+# Обработчик нажатия кнопки "Меню"
+@bot.message_handler(func=lambda message: message.text == 'Меню')
+def handle_menu_button(message):
+    # Отправляем inline-клавиатуру с командами
+    markup = InlineKeyboardMarkup()
+    markup.row_width = 1  # Отображаем кнопки в один столбец
+    
+    command_list = "/start - Начать заново\n/menu - Показать это меню\n"
+    command_buttons = [
+        InlineKeyboardButton("Показать команды", callback_data='show_commands'),
+    ]
+    markup.add(*command_buttons)
+    
+    bot.send_message(message.chat.id, "Выберите команду:", reply_markup=markup)
+
+# Обработчик inline-кнопок
+@bot.callback_query_handler(func=lambda call: True)
+def handle_inline_buttons(call):
+    if call.data == 'show_commands':
+        send_command_menu(call.message.chat.id)
+
+# Запуск бота с увеличенным таймаутом и механизмом повторных попыток
+while True:
+    try:
+        bot.polling(timeout=60, long_polling_timeout=60)
+    except requests.exceptions.ReadTimeout:
+        time.sleep(5)  # Ожидание 5 секунд перед повторной попыткой
+    except Exception as e:
+        print(f"Неожиданная ошибка: {e}")
+        time.sleep(5)
