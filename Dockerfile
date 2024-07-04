@@ -5,11 +5,10 @@ FROM python:3.12.4
 WORKDIR /app
 
 # Копируем файл зависимостей в рабочую директорию
-COPY requirements.txt .
+COPY requirements.txt /app/requirements.txt
 
 # Устанавливаем зависимости 
-RUN pip install --no-cache-dir -r requirements.txt
-
+RUN pip install -r /app/requirements.txt
 # Копируем все файлы проекта в рабочую директорию
 COPY . .
 

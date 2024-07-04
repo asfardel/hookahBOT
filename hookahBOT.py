@@ -78,7 +78,7 @@ def set_bot_profile_photo(photo_path):
 # Обработчик команды /start
 @bot.message_handler(commands=['start'])
 def send_welcome(message):
-    # Удаляем предыдущие сообщения бота и пользовател
+    # Удаляем предыдущие сообщения бота и пользователя
     delete_last_messages(message.chat.id)
     delete_last_user_message(message.chat.id)
     
@@ -118,59 +118,4 @@ def handle_option(message):
     delete_last_messages(message.chat.id)
     delete_last_user_message(message.chat.id)
     
-    # Сохраняем ID последнего сообщения пользователя
-    last_user_message_id[message.chat.id] = message.message_id
-    
-    option = options[message.text]
-    photo_url = option['photo_url']
-    caption = option['caption']
-    
-    sent_photo_message = send_option_photo_with_button(message.chat.id, photo_url, caption)
-    if message.chat.id not in last_message_ids:
-        last_message_ids[message.chat.id] = []
-    last_message_ids[message.chat.id].append(sent_photo_message.message_id)
-
-# Обработчик кнопки "Вернуться к выбору"
-@bot.message_handler(func=lambda message: message.text == 'Вернуться к выбору')
-def handle_back_to_menu(message):
-    # Удаляем предыдущие сообщения бота и пользователя
-    delete_last_messages(message.chat.id)
-    delete_last_user_message(message.chat.id)
-    
-    # Сохраняем ID последнего сообщения пользователя
-    last_user_message_id[message.chat.id] = message.message_id
-    
-    # Отправляем меню с вариантами выбора
-    send_option_menu(message.chat.id)
-
-# Обработчик нажатия кнопки "Меню"
-@bot.message_handler(func=lambda message: message.text == 'Меню')
-def handle_menu_button(message):
-    # Отправляем inline-клавиатуру с командами
-    markup = InlineKeyboardMarkup()
-    markup.row_width = 1  # Отображаем кнопки в один столбец
-    
-    command_list = "/start - Начать заново\n/menu - Показать это меню\n"
-    command_buttons = [
-        InlineKeyboardButton("Показать команды", callback_data='show_commands'),
-    ]
-    markup.add(*command_buttons)
-    
-    bot.send_message(message.chat.id, "Выберите команду:", reply_markup=markup)
-
-# Обработчик inline-кнопок
-@bot.callback_query_handler(func=lambda call: True)
-def handle_inline_buttons(call):
-    if call.data == 'show_commands':
-        send_command_menu(call.message.chat.id)
-
-# Запуск бота с увеличенным таймаутом и механизмом повторных попыток
-while True:
-    try:
-        bot.polling(timeout=60, long_polling_timeout=60)
-    except requests.exceptions.ReadTimeout:
-        time.sleep(5)  # Ожидание 5 секунд перед повторной попыткой
-    except Exception as e:
-        print(f"Неожиданная ошибка: {e}")
-        time.sleep(5)
- 
+    # Сохраняем ID последнего сообщения
