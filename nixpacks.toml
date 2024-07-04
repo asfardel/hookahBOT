@@ -8,9 +8,7 @@ commands = [
 ]
 
 [phases.build]
-commands = [
-  "/opt/venv/bin/pip install -r requirements.txt"
-]
+commands = []
 
 [phases.start]
 cmd = "/opt/venv/bin/python hookahBOT.py"
