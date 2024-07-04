@@ -1,11 +1,18 @@
 [phases.setup]
 nixPkgs = ["python39", "pip"]
 
+[phases.install]
+commands = [
+  "python -m venv --copies /opt/venv",
+  ". /opt/venv/bin/activate",
+  "pip install -r requirements.txt"
+]
+
 [phases.build]
 commands = [
   "pip install -r requirements.txt"
 ]
 
 [phases.start]
-cmd = "python hookahBOT.py"
+cmd = ". /opt/venv/bin/activate && python hookahBOT.py"
 
