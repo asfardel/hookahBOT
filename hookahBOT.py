@@ -69,7 +69,7 @@ def send_command_menu(chat_id):
 
 # Функция для установки аватарки бота
 def set_bot_profile_photo(photo_path):
-    url = f"https://api.telegram.org/bot{API_TOKEN}/setChatPhoto"
+    url = f"https://github.com/asfardel/hookahBOT/blob/first_branch/photo/ava.png?raw=true"
     with open(photo_path, 'rb') as photo:
         files = {'photo': photo}
         response = requests.post(url, files=files)
@@ -173,3 +173,4 @@ while True:
     except Exception as e:
         print(f"Неожиданная ошибка: {e}")
         time.sleep(5)
+ 
