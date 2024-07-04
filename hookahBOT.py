@@ -78,7 +78,7 @@ def set_bot_profile_photo(photo_path):
 # Обработчик команды /start
 @bot.message_handler(commands=['start'])
 def send_welcome(message):
-    # Удаляем предыдущие сообщения бота и пользователя
+    # Удаляем предыдущие сообщения бота и пользовател
     delete_last_messages(message.chat.id)
     delete_last_user_message(message.chat.id)
     
