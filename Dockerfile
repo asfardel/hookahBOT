@@ -1,18 +1,16 @@
-# Используем официальный образ Python версии 3.9 в качестве базового
+# Используем официальный образ Python
 FROM python:3.12.4
 
-# Устанавливаем рабочую директорию внутри контейнера
+# Устанавливаем рабочую директорию
 WORKDIR /app
 
-# Копируем файл зависимостей в рабочую директорию
-COPY requirements.txt /app/requirements.txt
+# Копируем файл зависимостей и устанавливаем их
+COPY requirements.txt requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
 
-# Устанавливаем зависимости 
-RUN pip install -r /app/requirements.txt
-# Копируем все файлы проекта в рабочую директорию
+# Копируем все файлы проекта в контейнер
 COPY . .
 
-# Определяем команду для запуска приложения
+# Запускаем бота
 CMD ["python", "hookahBOT.py"]
-
 
