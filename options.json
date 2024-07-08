@@ -1,26 +1,163 @@
 {
-    "перечная мята": {
-        "photo_url": "https://github.com/asfardel/hookahBOT/blob/first_branch/photo/myata.jpg?raw=true",
-        "caption": "перечная мята"
+    "Инструкция": {
+        "photo_url": "https://github.com/asfardel/hookahBOT/blob/first_branch/photo/kak%20shitat.jpg?raw=true",
+        "caption": "Инструкция"
     },
-    "кислая вишня": {
+    "Вишня": {
         "photo_url": "https://github.com/asfardel/hookahBOT/blob/first_branch/photo/vishnya.jpg?raw=true",
-        "caption": "кислая вишня"
+        "caption": "Вишня"
     },
-    "гранат": {
+    "Барбарис": {
+        "photo_url": "https://github.com/asfardel/hookahBOT/blob/first_branch/photo/barbaris.jpg?raw=true",
+        "caption": "Барбарис"
+    },
+    "Ежевика": {
+        "photo_url": "https://github.com/asfardel/hookahBOT/blob/first_branch/photo/eshevika.jpg?raw=true",
+        "caption": "Ежевика"
+    },   
+    "Клубника": {
+        "photo_url": "https://github.com/asfardel/hookahBOT/blob/first_branch/photo/klubnika.jpg?raw=true",
+        "caption": "Клубника"
+    },  
+    "Клюква": {
+        "photo_url": "https://github.com/asfardel/hookahBOT/blob/first_branch/photo/klykva.jpg?raw=true",
+        "caption": "Клюква"
+    }, 
+    "Красная смородина": {
+        "photo_url": "https://github.com/asfardel/hookahBOT/blob/first_branch/photo/shernayasmorodina.jpg?raw=true",
+        "caption": "Красная смородина"
+    }, 
+    "Черная смородина": {
+        "photo_url": "https://github.com/asfardel/hookahBOT/blob/first_branch/photo/shernayasmorodina.jpg?raw=true",
+        "caption": "Черная смородина"
+    },
+    "Можевельник": {
+        "photo_url": "https://github.com/asfardel/hookahBOT/blob/first_branch/photo/moshevelnik.jpg?raw=true",
+        "caption": "Можевельник"
+    },
+    "Земляника": {
+        "photo_url": "https://github.com/asfardel/hookahBOT/blob/first_branch/photo/zemlyanika.jpg?raw=true",
+        "caption": "Земляника"
+    },
+    "Апельсин": {
+        "photo_url": "https://github.com/asfardel/hookahBOT/blob/first_branch/photo/apelsin.jpg?raw=true",
+        "caption": "Апельсин"
+    },
+    "Мандарин": {
+        "photo_url": "https://github.com/asfardel/hookahBOT/blob/first_branch/photo/apelsin.jpg?raw=true",
+        "caption": "Мандарин"
+    },
+    "Грейпфрут": {
+        "photo_url": "https://github.com/asfardel/hookahBOT/blob/first_branch/photo/geyphuit.jpg?raw=true",
+        "caption": "Грейпфрут"
+    },
+    "Лайм": {
+        "photo_url": "https://github.com/asfardel/hookahBOT/blob/first_branch/photo/laim.jpg?raw=true",
+        "caption": "Лайм"
+    },
+    "Банан": {
+        "photo_url": "https://github.com/asfardel/hookahBOT/blob/first_branch/photo/banan.jpg?raw=true",
+        "caption": "Банан"
+    },
+    "Арбуз": {
+        "photo_url": "https://github.com/asfardel/hookahBOT/blob/first_branch/photo/arbuz.jpg?raw=true",
+        "caption": "Арбуз"
+    },
+    "Айва": {
+        "photo_url": "https://github.com/asfardel/hookahBOT/blob/first_branch/photo/ayiva.jpg?raw=true",
+        "caption": "Айва"
+    },
+    "Ананас": {
+        "photo_url": "https://github.com/asfardel/hookahBOT/blob/first_branch/photo/ananas.jpg?raw=true",
+        "caption": "Ананас"
+    },
+    "Дыня": {
+        "photo_url": "https://github.com/asfardel/hookahBOT/blob/first_branch/photo/dynua.jpg?raw=true",
+        "caption": "Дыня"
+    },
+    "Фейхоа": {
+        "photo_url": "https://github.com/asfardel/hookahBOT/blob/first_branch/photo/feihoa.jpg?raw=true",
+        "caption": "Фейхоа"
+    },
+    "Гранат": {
         "photo_url": "https://github.com/asfardel/hookahBOT/blob/first_branch/photo/granat.jpg?raw=true",
-        "caption": "гранат"
+        "caption": "Гранат"
     },
-    "персик": {
-        "photo_url": "https://github.com/asfardel/hookahBOT/blob/first_branch/photo/persik.jpg?raw=true",
-        "caption": "персик"
+    "Груша": {
+        "photo_url": "https://github.com/asfardel/hookahBOT/blob/first_branch/photo/grysha.jpg?raw=true",
+        "caption": "Груша"
     },
-    "маракуйя": {
-        "photo_url": "https://github.com/asfardel/hookahBOT/blob/first_branch/photo/marakuya.jpg?raw=true",
-        "caption": "маракуйя"
+    "Гуава": {
+        "photo_url": "https://github.com/asfardel/hookahBOT/blob/first_branch/photo/gyava.jpg?raw=true",
+        "caption": "Гуава"
     },
-    "манго": {
+    "Киви": {
+        "photo_url": "https://github.com/asfardel/hookahBOT/blob/first_branch/photo/kiwi.jpg?raw=true",
+        "caption": "Киви"
+    },
+    "Личи": {
+        "photo_url": "https://github.com/asfardel/hookahBOT/blob/first_branch/photo/lithi.jpg?raw=true",
+        "caption": "Личи"
+    },
+    "Манго": {
         "photo_url": "https://github.com/asfardel/hookahBOT/blob/first_branch/photo/mango.jpg?raw=true",
-        "caption": "манго"
+        "caption": "Манго"
+    },
+    "Маракуйя": {
+        "photo_url": "https://github.com/asfardel/hookahBOT/blob/first_branch/photo/marakyuas.jpg?raw=true",
+        "caption": "Маракуйя"
+    },
+    "Нектарин": {
+        "photo_url": "https://github.com/asfardel/hookahBOT/blob/first_branch/photo/nektorin.jpg?raw=true",
+        "caption": "Нектарин"
+    },
+    "Персик": {
+        "photo_url": "https://github.com/asfardel/hookahBOT/blob/first_branch/photo/nektorin.jpg?raw=true",
+        "caption": "Персик"
+    },
+    "Кола": {
+        "photo_url": "https://github.com/asfardel/hookahBOT/blob/first_branch/photo/cocacola.jpg?raw=true",
+        "caption": "ыыыы"
+    },
+    "Кокос": {
+        "photo_url": "https://github.com/asfardel/hookahBOT/blob/first_branch/photo/kokos.jpg?raw=true",
+        "caption": "ыыыы"
+    },
+    "Шоколад": {
+        "photo_url": "https://github.com/asfardel/hookahBOT/blob/first_branch/photo/kokalad.jpg?raw=true",
+        "caption": "ыыыы"
+    },
+    "Ёлки": {
+        "photo_url": "https://github.com/asfardel/hookahBOT/blob/first_branch/photo/elki.jpg?raw=true",
+        "caption": "Ёлки"
+    },
+    "Какао": {
+        "photo_url": "https://github.com/asfardel/hookahBOT/blob/first_branch/photo/kakao.jpg?raw=true",
+        "caption": "Какао"
+    },
+    "Черный чай": {
+        "photo_url": "https://github.com/asfardel/hookahBOT/blob/first_branch/photo/black%20tua.jpg?raw=true",
+        "caption": "Черный чай"
+    },
+    "Корица": {
+        "photo_url": "https://github.com/asfardel/hookahBOT/blob/first_branch/photo/koriza.jpg?raw=true",
+        "caption": "Корица"
+    },
+    "Кукуруза": {
+        "photo_url": "https://github.com/asfardel/hookahBOT/blob/first_branch/photo/kykyryza.jpg?raw=true",
+        "caption": "Кукуруза"
+    },
+    "Перечная мята": {
+        "photo_url": "https://github.com/asfardel/hookahBOT/blob/first_branch/photo/myata.jpg?raw=true",
+        "caption": "Перечная мята"
+    },
+    "Мёд": {
+        "photo_url": "https://github.com/asfardel/hookahBOT/blob/first_branch/photo/med.jpg?raw=true",
+        "caption": "Мёд"
+    },
+    "Ром": {
+        "photo_url": "https://github.com/asfardel/hookahBOT/blob/first_branch/photo/rom.jpg?raw=true",
+        "caption": "Ром"
     }
 }
+    
