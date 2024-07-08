@@ -1,9 +1,9 @@
 {
-    "Инструкция": {
+    "Обязательно к ознакомлению": {
         "photo_url": "https://github.com/asfardel/hookahBOT/blob/first_branch/photo/kak%20shitat.jpg?raw=true",
         "caption": "Данный бот предоставляет таблицы вкусовых сочетаний для работы кальянных мастеров. Инструкция на фото. Все таблицы и информация взяты из телеграмм канала t.me/hookahscience, спасибо им огромное за их работу :)"
     },
-    "Вишня": {
+    "Вишня🍒": {
         "photo_url": "https://github.com/asfardel/hookahBOT/blob/first_branch/photo/vishnya.jpg?raw=true",
         "caption": "Вишня"
     },
@@ -31,9 +31,9 @@
         "photo_url": "https://github.com/asfardel/hookahBOT/blob/first_branch/photo/shernayasmorodina.jpg?raw=true",
         "caption": "Черная смородина"
     },
-    "Можевельник": {
+    "Можжевельник": {
         "photo_url": "https://github.com/asfardel/hookahBOT/blob/first_branch/photo/moshevelnik.jpg?raw=true",
-        "caption": "Можевельник"
+        "caption": "Можжевельник"
     },
     "Земляника": {
         "photo_url": "https://github.com/asfardel/hookahBOT/blob/first_branch/photo/zemlyanika.jpg?raw=true",

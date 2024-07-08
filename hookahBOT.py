@@ -147,12 +147,12 @@ def handle_back_to_menu(message):
 @bot.message_handler(func=lambda message: message.text == 'Меню')
 def handle_menu_button(message):
     # Отправляем inline-клавиатуру с командами
-    markup = InlineKeyboardMarkup()
+    markup = telebot.types.InlineKeyboardMarkup()
     markup.row_width = 1  # Отображаем кнопки в один столбец
     
     command_list = "/start - Начать заново\n/menu - Показать это меню\n"
     command_buttons = [
-        InlineKeyboardButton("Показать команды", callback_data='show_commands'),
+        telebot.types.InlineKeyboardButton("Показать команды", callback_data='show_commands'),
     ]
     markup.add(*command_buttons)
     
