@@ -3,9 +3,10 @@ import telebot
 import requests
 import json
 
-API_TOKEN = os.getenv('7367410479:AAG2lm0_YWlbtry9enSf2Z7Bpd7maqSdXtg')
+API_TOKEN = '7367410479:AAG2lm0_YWlbtry9enSf2Z7Bpd7maqSdXtg'  # Замените на ваш токен
 
-bot = telebot.TeleBot(7367410479:AAG2lm0_YWlbtry9enSf2Z7Bpd7maqSdXtg)
+bot = telebot.TeleBot(API_TOKEN)
+
 
 # Словарь для хранения ID последних отправленных сообщений для каждого чата
 last_message_ids = {}
